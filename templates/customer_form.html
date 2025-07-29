@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h2>{{ 'Edit Customer' if customer else 'New Customer' }}</h2>
+<form method="post">
+  <div class="mb-3">
+    <label for="name" class="form-label">Name</label>
+    <input type="text" class="form-control" id="name" name="name" value="{{ customer.name if customer else '' }}" required>
+  </div>
+  <div class="mb-3">
+    <label for="driver_license" class="form-label">Driver License</label>
+    <input type="text" class="form-control" id="driver_license" name="driver_license" value="{{ customer.driver_license if customer else '' }}">
+  </div>
+  <div class="mb-3">
+    <label for="birth_date" class="form-label">Birth Date</label>
+    <input type="date" class="form-control" id="birth_date" name="birth_date" value="{{ customer.birth_date if customer else '' }}">
+  </div>
+  <div class="mb-3">
+    <label for="address" class="form-label">Address</label>
+    <textarea class="form-control" id="address" name="address" rows="2">{{ customer.address if customer else '' }}</textarea>
+  </div>
+  <div class="mb-3">
+    <label for="phone" class="form-label">Phone</label>
+    <input type="tel" class="form-control" id="phone" name="phone" value="{{ customer.phone if customer else '' }}">
+  </div>
+  <button type="submit" class="btn btn-primary">Save</button>
+  <a href="/customers" class="btn btn-secondary">Cancel</a>
+</form>
+{% endblock %}

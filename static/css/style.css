@@ -1,0 +1,17 @@
+/* Custom global styles */
+body {
+  padding-bottom: 60px;
+}
+
+table {
+  font-size: 0.9rem;
+}
+
+@media (max-width: 576px) {
+  h1, h2, h5 {
+    font-size: 1.2rem;
+  }
+  table th, table td {
+    white-space: nowrap;
+  }
+}

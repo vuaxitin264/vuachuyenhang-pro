@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{{ title or "VuaChuyenHang Pro" }}</title>
+  <!-- Bootstrap CSS via CDN for responsive layout -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaJZJljT5YHz0hDJqGZB0Sp1Qx8kR1HF2S84JLya4yCIVj2swNk5T9FAnb5" crossorigin="anonymous">
+  <!-- Custom styles -->
+  <link rel="stylesheet" href="/static/css/style.css">
+</head>
+<body>
+  <nav class="navbar navbar-expand-lg navbar-light bg-light mb-4">
+    <div class="container">
+      <a class="navbar-brand fw-bold" href="/">VuaChuyenHang Pro</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav">
+          <li class="nav-item"><a class="nav-link" href="/customers">Customers</a></li>
+          <li class="nav-item"><a class="nav-link" href="/orders">Orders</a></li>
+          <li class="nav-item"><a class="nav-link" href="/track">Track</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+  <main class="container">
+    {% block content %}{% endblock %}
+  </main>
+  <!-- Bootstrap JS via CDN -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-ENjdO4Dr2bkBIFxQpeoSk8HxiJ1s4IE5nqXNNtJniY1wZAJdcv5AHal+0KS9LQK0" crossorigin="anonymous"></script>
+</body>
+</html>

@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h2>Track Order</h2>
+<form method="get" action="/track" class="mb-4">
+  <div class="input-group">
+    <input type="text" name="number" class="form-control" placeholder="Enter tracking number" value="{{ request.query_params.get('number') or '' }}" required>
+    <button class="btn btn-primary" type="submit">Track</button>
+  </div>
+</form>
+
+{% if result is not none %}
+  {% if result %}
+    <div class="card">
+      <div class="card-body">
+        <h5 class="card-title">Order #{{ result.id }}</h5>
+        <p><strong>Tracking #:</strong> {{ result.tracking_number }}</p>
+        <p><strong>Sender:</strong> {{ result.sender_name }}</p>
+        <p><strong>Receiver:</strong> {{ result.receiver_name }}</p>
+        <p><strong>Date:</strong> {{ result.send_date }}</p>
+        <p><strong>Status:</strong> {{ result.status }}</p>
+        <p><strong>Total:</strong> {{ '%.2f'|format(result.total) }}</p>
+      </div>
+    </div>
+  {% else %}
+    <div class="alert alert-warning">No order found for that tracking number.</div>
+  {% endif %}
+{% endif %}
+{% endblock %}

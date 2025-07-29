@@ -1,0 +1,62 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h2>{{ 'Edit Order' if order else 'New Order' }}</h2>
+<form method="post">
+  <div class="mb-3">
+    <label class="form-label" for="sender_id">Sender</label>
+    <select class="form-select" name="sender_id" id="sender_id" required>
+      <option value="">Select sender...</option>
+      {% for c in customers %}
+      <option value="{{ c.id }}" {% if order and order.sender_id == c.id %}selected{% endif %}>{{ c.name }}</option>
+      {% endfor %}
+    </select>
+  </div>
+  <hr>
+  <h5>Receiver Information</h5>
+  <div class="mb-3">
+    <label class="form-label" for="receiver_name">Name</label>
+    <input type="text" class="form-control" id="receiver_name" name="receiver_name" value="{{ order.receiver_name if order else '' }}" required>
+  </div>
+  <div class="mb-3">
+    <label class="form-label" for="receiver_address">Address</label>
+    <textarea class="form-control" id="receiver_address" name="receiver_address" rows="2" required>{{ order.receiver_address if order else '' }}</textarea>
+  </div>
+  <div class="mb-3">
+    <label class="form-label" for="receiver_phone">Phone</label>
+    <input type="tel" class="form-control" id="receiver_phone" name="receiver_phone" value="{{ order.receiver_phone if order else '' }}" required>
+  </div>
+  <hr>
+  <h5>Transaction Details</h5>
+  <div class="row">
+    <div class="col-md-4 mb-3">
+      <label class="form-label" for="exchange_rate">Exchange Rate</label>
+      <input type="number" step="0.0001" class="form-control" id="exchange_rate" name="exchange_rate" value="{{ order.exchange_rate if order else '' }}" required>
+    </div>
+    <div class="col-md-4 mb-3">
+      <label class="form-label" for="amount">Amount</label>
+      <input type="number" step="0.01" class="form-control" id="amount" name="amount" value="{{ order.amount if order else '' }}" required>
+    </div>
+    <div class="col-md-4 mb-3">
+      <label class="form-label" for="fee">Fee</label>
+      <input type="number" step="0.01" class="form-control" id="fee" name="fee" value="{{ order.fee if order else '' }}" required>
+    </div>
+  </div>
+  <div class="mb-3">
+    <label class="form-label" for="send_date">Send Date</label>
+    <input type="date" class="form-control" id="send_date" name="send_date" value="{{ order.send_date if order else '' }}" required>
+  </div>
+  {% if order %}
+  <div class="mb-3">
+    <label class="form-label" for="status">Status</label>
+    <select class="form-select" id="status" name="status">
+      {% for s in ['New','Processing','Completed'] %}
+      <option value="{{ s }}" {% if order.status == s %}selected{% endif %}>{{ s }}</option>
+      {% endfor %}
+    </select>
+  </div>
+  {% endif %}
+  <button type="submit" class="btn btn-primary">Save</button>
+  <a href="/orders" class="btn btn-secondary">Cancel</a>
+</form>
+{% endblock %}
